@@ -1,22 +1,35 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import * as React from 'react';
+import { StyleSheet, Dimensions, View } from 'react-native';
+import { TabView, SceneMap } from 'react-native-tab-view';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+const FirstRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+);
 
+const SecondRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
+);
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component {
+  state = {
+    index: 0,
+    routes: [
+      { key: 'first', title: 'One' },
+      { key: 'second', title: 'Two' },
+    ],
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>This used typescript in react native</Text>
-      </View>
+      <TabView
+        navigationState={this.state}
+        renderScene={SceneMap({
+          first: FirstRoute,
+          second: SecondRoute,
+        })}
+        onIndexChange={index => this.setState({ index })}
+        initialLayout={{ width: Dimensions.get('window').width }}
+      />
     );
   }
 }
@@ -27,6 +40,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  scene: {
+    flex: 1,
   },
   welcome: {
     fontSize: 20,
