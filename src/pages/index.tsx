@@ -23,12 +23,18 @@ const renderNewTab = (props: SceneRendererProps & {
 />
 
 interface PageProps {
-  state: any,
-  changeTabIndex: any
+  state: {
+    index: number,
+    routes: {
+      key: string,
+      title: string
+    }[]
+  },
+  changeTabIndex: (index: number) => void
 }
 
 
-const History: React.SFC<PageProps> = ({
+const PageContainer: React.SFC<PageProps> = ({
   state,
   changeTabIndex
 }) => (
@@ -81,4 +87,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default History;
+export default PageContainer;

@@ -16,16 +16,6 @@ export default class App extends React.Component {
 
   render() {
     return (
-      // <TabView
-      //   navigationState={this.state}
-      //   renderScene={SceneMap({
-      //     first: FirstRoute,
-      //     second: SecondRoute,
-      //   })}
-      //   onIndexChange={index => this.setState({ index })}
-      //   initialLayout={{ width: Dimensions.get('window').width }}
-      //   renderTabBar={renderNewTab}
-      // />
       <PageContainer state={this.state} changeTabIndex={this.changeTabIndex} />
     );
   }
