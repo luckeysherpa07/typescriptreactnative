@@ -1,44 +1,6 @@
 import * as React from 'react';
-import { ReactNode } from 'react';
 import { StyleSheet, Dimensions, View } from 'react-native';
-import { TabView, SceneMap, SceneRendererProps, TabBar } from 'react-native-tab-view';
-
-export type Key = { key: string }
-
-export type RouteBase = Key & { testID?: string }
-
-export type NavigationState<T extends Key> = {
-  index: number
-  routes: T[]
-}
-
-export type PagerProps = {
-  animationEnabled?: boolean
-  swipeEnabled?: boolean
-  swipeDistanceThreshold?: number
-  swipeVelocityThreshold?: number
-  children?: ReactNode
-}
-
-export type Layout = {
-  height: number
-  width: number
-}
-
-export type SceneRendererProps<T extends RouteBase = RouteBase> = {
-  layout: Layout & {
-    measured: boolean
-  }
-  navigationState: NavigationState<T>
-}
-
-export type TabViewProps<
-  T extends RouteBase = RouteBase
-  > = PagerProps & {
-    navigationState: NavigationState<T>
-    tabBarPosition?: 'bottom' | 'top'
-    renderTabBar?: (props: SceneRendererProps) => ReactNode
-  }
+import { TabView, SceneMap, SceneRendererProps, NavigationState, TabBar } from 'react-native-tab-view';
 
 const FirstRoute = () => (
   <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
@@ -60,7 +22,7 @@ const renderNewTab = (props: SceneRendererProps & {
     labelStyle={styles.label}
   />
 
-export default class App extends React.Component<TabViewProps> {
+export default class App extends React.Component {
   state = {
     index: 0,
     routes: [
