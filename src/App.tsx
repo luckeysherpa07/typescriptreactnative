@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Text } from 'react-native';
+import Container from './atom/Container'
 import PageContainer from './pages';
 
 export default class App extends React.Component {
@@ -16,7 +18,10 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <PageContainer state={this.state} changeTabIndex={this.changeTabIndex} />
+      <Container>
+          <Text>LUckey</Text>
+          <PageContainer state={this.state} changeTabIndex={this.changeTabIndex} />
+      </Container>
     );
   }
 }
